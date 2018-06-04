@@ -25,7 +25,7 @@ if (!isset($_SESSION['user'])) {
     // - remove admin privileges
 		// - restrict access to the auto_* project only
     $User->projects = array( $Project->path );
-    $User->Project_Access();
+    //$User->Project_Access();
 	}
 }
 ?>
