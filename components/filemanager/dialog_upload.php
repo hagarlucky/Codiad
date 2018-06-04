@@ -6,7 +6,7 @@
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once( BASE_PATH . '/common.php' );
+require_once( '../../common.php' );
 require_once('class.filemanager.php');
 
 //////////////////////////////////////////////////////////////////
