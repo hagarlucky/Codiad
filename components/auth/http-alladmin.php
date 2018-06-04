@@ -26,6 +26,7 @@ if (!isset($_SESSION['user'])) {
 		// - restrict access to the auto_* project only
     $User->projects = array( $Project->path );
     //$User->Project_Access();
+		//
 	}
 }
 ?>

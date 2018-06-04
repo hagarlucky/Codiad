@@ -15,4 +15,3 @@ themes/*
 .svn/
 vendor/
 composer.lock
-components/auth/
