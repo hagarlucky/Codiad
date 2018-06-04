@@ -7,7 +7,7 @@
     */
 
 
-    require_once( BASE_PATH . '/common.php' );
+    require_once( '../../common.php' );
     require_once('class.update.php');
 
     //////////////////////////////////////////////////////////////////
