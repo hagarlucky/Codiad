@@ -2,11 +2,11 @@
 
 /*
 *  Copyright (c) Codiad & Kent Safranski (codiad.com), distributed
-*  as-is and without warranty under the MIT License. See 
+*  as-is and without warranty under the MIT License. See
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once('../../common.php');
+require_once( BASE_PATH . '/common.php' );
 
 //////////////////////////////////////////////////////////////////
 // Verify Session or Key
@@ -23,18 +23,18 @@ switch($_GET['action']){
     //////////////////////////////////////////////////////////////////
     // Find & Replace
     //////////////////////////////////////////////////////////////////
-    
+
     case 'search':
     $type = $_GET['type'];
     ?>
     <label><?php i18n("Find:"); ?></label>
     <input type="text" name="find" autofocus="autofocus" autocomplete="off">
-    
+
     <?php if($type=='replace'){ ?>
 
     <label><?php i18n("Replace:"); ?></label>
     <input type="text" name="replace">
-    
+
     <?php } ?>
 
     <button class="btn-left" onclick="codiad.editor.search('find');return false;"><?php i18n("Find"); ?></button>

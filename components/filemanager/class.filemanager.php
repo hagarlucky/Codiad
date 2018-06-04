@@ -6,8 +6,8 @@
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once('../../lib/diff_match_patch.php');
-require_once('../../common.php');
+require_once( BASE_PATH . '/lib/diff_match_patch.php' );
+require_once( BASE_PATH . '/common.php' );
 
 class Filemanager extends Common
 {
@@ -273,7 +273,7 @@ class Filemanager extends Common
     {
         if (is_file($this->path)) {
             $output = file_get_contents($this->path);
-            
+
             if (extension_loaded('mbstring')) {
                 if (!mb_check_encoding($output, 'UTF-8')) {
                     if (mb_check_encoding($output, 'ISO-8859-1')) {
@@ -283,7 +283,7 @@ class Filemanager extends Common
                     }
                 }
             }
-        
+
             $this->status = "success";
             $this->data = '"content":' . json_encode($output);
             $mtime = filemtime($this->path);
@@ -435,7 +435,7 @@ class Filemanager extends Common
                 if (is_file($this->path)) {
                     $serverMTime = filemtime($this->path);
                     $fileContents = file_get_contents($this->path);
-    
+
                     if ($this->patch && $this->mtime != $serverMTime) {
                         $this->status = "error";
                         $this->message = "Client is out of sync";
@@ -449,7 +449,7 @@ class Filemanager extends Common
                         $this->respond();
                         return;
                     }
-    
+
                     if ($file = fopen($this->path, 'w')) {
                         if ($this->patch) {
                             $dmp = new diff_match_patch();
@@ -458,7 +458,7 @@ class Filemanager extends Common
                             //DEBUG : file_put_contents($this->path.".orig",$fileContents );
                             //DEBUG : file_put_contents($this->path.".patch", $this->patch);
                         }
-    
+
                         if (fwrite($file, $this->content) === false) {
                             $this->status = "error";
                             $this->message = "could not write to file";
@@ -470,7 +470,7 @@ class Filemanager extends Common
                             $this->data = '"mtime":'.filemtime($this->path);
                             $this->status = "success";
                         }
-    
+
                         fclose($file);
                     } else {
                         $this->status = "error";
@@ -604,7 +604,7 @@ class Filemanager extends Common
 
     public static function cleanPath($path)
     {
-    
+
         // replace backslash with slash
         $path = str_replace('\\', '/', $path);
 

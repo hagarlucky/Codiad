@@ -2,27 +2,27 @@
 
     /*
     *  Copyright (c) Codiad & daeks (codiad.com), distributed
-    *  as-is and without warranty under the MIT License. See 
+    *  as-is and without warranty under the MIT License. See
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
-    
+    require_once( BASE_PATH . '/common.php' );
+
     //////////////////////////////////////////////////////////////////
     // Verify Session or Key
     //////////////////////////////////////////////////////////////////
-    
+
     checkSession();
 
     switch($_GET['action']){
-            
+
         //////////////////////////////////////////////////////////////////////
         // Update
         //////////////////////////////////////////////////////////////////////
-        
+
         case 'check':
-        
-            if(!checkAccess()){ 
+
+            if(!checkAccess()){
             ?>
             <label><?php i18n("Restricted"); ?></label>
             <pre><?php i18n("You can not check for updates"); ?></pre>
@@ -59,7 +59,7 @@
             <form>
             <?php }
             break;
-            
+
     }
-    
+
 ?>
