@@ -2,11 +2,11 @@
 
 /*
 *  Copyright (c) Codiad & Kent Safranski (codiad.com), distributed
-*  as-is and without warranty under the MIT License. See 
+*  as-is and without warranty under the MIT License. See
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once('../../common.php');
+require_once( BASE_PATH . '/common.php' );
 require_once('class.filemanager.php');
 
 //////////////////////////////////////////////////////////////////
@@ -19,16 +19,16 @@ checkSession();
 <label><?php i18n("Upload Files"); ?></label>
 
 <div id="upload-drop-zone">
-    
+
     <span id="upload-wrapper">
-    
+
         <input id="fileupload" type="file" name="upload[]" data-url="components/filemanager/controller.php?action=upload&path=<?php echo($_GET['path']); ?>" multiple>
         <span id="upload-clicker"><?php i18n("Drag Files or Click Here to Upload"); ?></span>
-    
+
     </span>
 
     <div id="upload-progress"><div class="bar"></div></div>
-    
+
     <div id="upload-complete"><?php i18n("Complete!"); ?></div>
 
 </div>

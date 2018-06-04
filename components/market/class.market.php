@@ -6,7 +6,7 @@
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once('../../common.php');
+require_once( BASE_PATH . '/common.php' );
 
 class Market extends Common
 {
@@ -37,12 +37,12 @@ class Market extends Common
         if (!file_exists(DATA.'/cache')) {
             mkdir(DATA.'/cache');
         }
-        
+
         // get existing data
         $this->local['plugins'] = Common::readDirectory(PLUGINS);
         $this->local['themes'] = Common::readDirectory(THEMES);
         $this->url = Common::getConstant('MARKETURL', $this->url);
-                
+
         // load market from server
         if (!file_exists(DATA.'/cache/market.current')) {
             $optout = "";
@@ -70,12 +70,12 @@ class Market extends Common
         // get current and last market cache to establish array
         $this->old = json_decode(file_get_contents(DATA.'/cache/market.last'), true);
         $this->remote = json_decode(file_get_contents(DATA.'/cache/market.current'), true);
-        
+
         // internet connection could not be established
         if ($this->remote == '') {
             $this->remote = array();
         }
-        
+
         // check old cache for new ones
         $this->tmp = array();
         foreach ($this->remote as $key => $data) {
@@ -89,7 +89,7 @@ class Market extends Common
             if (!$found && !isset($data['folder'])) {
                 $data['new'] = '1';
             }
-          
+
           // check if folder exists for that extension
             if (substr($data['url'], -4) == '.git') {
                 $data['url'] = substr($data['url'], 0, -4);
@@ -101,11 +101,11 @@ class Market extends Common
                     $data['folder'] = substr($data['url'], strrpos($data['url'], '/')+1).'-master';
                 }
             }
-             
+
             array_push($this->tmp, $data);
         }
         $this->remote = $this->tmp;
-                
+
         // Scan plugins directory for missing plugins
         foreach (scandir(PLUGINS) as $fname) {
             if ($fname == '.' || $fname == '..') {
@@ -135,7 +135,7 @@ class Market extends Common
                 }
             }
         }
-         
+
         // Scan theme directory for missing plugins
         foreach (scandir(THEMES) as $fname) {
             if ($fname == '.' || $fname == '..' || $fname == 'default') {
@@ -165,7 +165,7 @@ class Market extends Common
                 }
             }
         }
-         
+
          // Check for updates
          $this->tmp = array();
         foreach ($this->remote as $key => $data) {
@@ -175,9 +175,9 @@ class Market extends Common
           // extension exists locally, so load its metadata
             if (isset($data['folder'])) {
                 $local = json_decode(file_get_contents(BASE_PATH.'/'.$data['type'].'/'.$data['folder'].'/'.rtrim($data['type'], 's').'.json'), true);
-              
+
                 $remoteurl = str_replace('github.com', 'raw.github.com', $data['url']).'/master/'.rtrim($data['type'], 's').'.json';
-              
+
                 if (!file_exists(DATA.'/cache/'.$data['folder'].'.current')) {
                     file_put_contents(DATA.'/cache/'.$data['folder'].'.current', file_get_contents($remoteurl));
                 } else {
@@ -185,9 +185,9 @@ class Market extends Common
                         file_put_contents(DATA.'/cache/'.$data['folder'].'.current', file_get_contents($remoteurl));
                     }
                 }
-              
+
                   $remote = json_decode(file_get_contents(DATA.'/cache/'.$data['folder'].'.current'), true);
-              
+
                   $data['version'] = $local[0]['version'];
                 if ($remote[0]['version'] != $local[0]['version']) {
                     $data['update'] = $remote[0]['version'];

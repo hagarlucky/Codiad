@@ -6,7 +6,7 @@
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once('../../common.php');
+require_once( BASE_PATH . '/common.php' );
 
 class Active extends Common
 {
@@ -136,7 +136,7 @@ class Active extends Common
         saveJSON('active.php', $this->actives);
         echo formatJSEND("success");
     }
-    
+
     //////////////////////////////////////////////////////////////////
     // Remove All Files
     //////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ class Active extends Common
         saveJSON('active.php', $this->actives);
         echo formatJSEND("success");
     }
-    
+
     //////////////////////////////////////////////////////////////////
     // Mark File As Focused
     //  All other files will be marked as non-focused.

@@ -6,7 +6,7 @@
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
+    require_once( BASE_PATH . '/common.php' );
     require_once('class.filemanager.php');
 
     //////////////////////////////////////////////////////////////////
@@ -32,9 +32,9 @@ if (!empty($_GET['action'])) {
 if (!isset($_SESSION['project'])) {
     $_GET['action']='get_current';
     $_GET['no_return']='true';
-    require_once('../project/controller.php');
+    require_once( COMPONENTS + '/project/controller.php' );
 }
-    
+
     //////////////////////////////////////////////////////////////////
     // Security Check
     //////////////////////////////////////////////////////////////////

@@ -6,13 +6,13 @@
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
+    require_once( BASE_PATH . '/common.php' );
     require_once('class.user.php');
 
 if (!isset($_GET['action'])) {
     die(formatJSEND("error", "Missing parameter"));
 }
-    
+
     //////////////////////////////////////////////////////////////////
     // Verify Session or Key
     //////////////////////////////////////////////////////////////////
@@ -31,12 +31,12 @@ if ($_GET['action']=='authenticate') {
     if (!isset($_POST['username']) || !isset($_POST['password'])) {
         die(formatJSEND("error", "Missing username or password"));
     }
-        
+
     $User->username = $_POST['username'];
     $User->password = $_POST['password'];
 
     // check if the asked languages exist and is registered in languages/code.php
-    require_once '../../languages/code.php';
+    require_once( BASE_PATH . '/languages/code.php' );
     if (isset($languages[ $_POST['language'] ])) {
         $User->lang = $_POST['language'];
     } else {
@@ -68,7 +68,7 @@ if ($_GET['action']=='create') {
         if (!isset($_POST['username']) || !isset($_POST['password'])) {
             die(formatJSEND("error", "Missing username or password"));
         }
-            
+
         $User->username = User::CleanUsername($_POST['username']);
         $User->password = $_POST['password'];
         $User->Create();
@@ -84,7 +84,7 @@ if ($_GET['action']=='delete') {
         if (!isset($_GET['username'])) {
             die(formatJSEND("error", "Missing username"));
         }
-            
+
         $User->username = $_GET['username'];
         $User->Delete();
     }
@@ -100,7 +100,7 @@ if ($_GET['action']=='project_access') {
             die(formatJSEND("error", "Missing username"));
         }
         $User->username = $_GET['username'];
-            
+
         //No project selected
         if (isset($_POST['projects'])) {
             $User->projects = $_POST['projects'];
@@ -119,7 +119,7 @@ if ($_GET['action']=='password') {
     if (!isset($_POST['username']) || !isset($_POST['password'])) {
         die(formatJSEND("error", "Missing username or password"));
     }
-        
+
     if (checkAccess() || $_POST['username'] == $_SESSION['user']) {
         $User->username = $_POST['username'];
         $User->password = $_POST['password'];
@@ -135,7 +135,7 @@ if ($_GET['action']=='project') {
     if (!isset($_GET['project'])) {
         die(formatJSEND("error", "Missing project"));
     }
-        
+
     $User->username = $_SESSION['user'];
     $User->project  = $_GET['project'];
     $User->Project();

@@ -7,7 +7,7 @@
  * See [root]/license.txt for more. This information must remain intact.
  */
 
-require_once '../../common.php';
+require_once( BASE_PATH . '/common.php' );
 
 
 class fileextension_textmode
@@ -185,7 +185,7 @@ class fileextension_textmode
     );
 
     const storeFilename = 'extensions.php';
-    
+
     //////////////////////////////////////////////////////////////////
     //check the session if the user is allowed to do anything here
     //////////////////////////////////////////////////////////////////
@@ -252,7 +252,7 @@ class fileextension_textmode
 
             $extension = strtolower(trim($extension));
             $textMode =  strtolower(trim($_POST["textMode"][$key]));
-            
+
             if (!$this->validateExtension($extension)) {
                 return json_encode(array('status' => 'error', 'msg' => 'incorrect extension:'.htmlentities($extension)));
             }
@@ -313,7 +313,7 @@ class fileextension_textmode
             //default extensions
             $ext = $this->defaultExtensions;
         }
-        
+
         //the availiable extensions, which aren't removed
         $availEx = array();
         foreach ($ext as $ex => $mode) {
@@ -323,7 +323,7 @@ class fileextension_textmode
         }
         return json_encode(array('status' => 'success', 'extensions' => $availEx, 'textModes' => $this->availiableTextModes));
     }
-    
+
     //////////////////////////////////////////////////////////////////
     //return a select-field with all availiable text modes, the one in the parameter is selected
     //////////////////////////////////////////////////////////////////
@@ -340,14 +340,14 @@ class fileextension_textmode
             }
             $ret .='>'.$textmode.'</option>'."\n";
         }
-        
+
         //unknown extension, print it in the end
         if (!$find && $extension != '') {
             $ret .= '	<option selected="selected">'.$textmode.'</option>'."\n";
         }
-    
+
         $ret .= '</select>'."\n";
-    
+
         return $ret;
     }
 }

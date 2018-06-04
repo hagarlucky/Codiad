@@ -6,7 +6,7 @@
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
+    require_once( BASE_PATH . '/common.php' );
 
     //////////////////////////////////////////////////////////////////
     // Verify Session or Key
@@ -40,7 +40,7 @@
                 </tr>
             </table>
             <div class="user-wrapper">
-            <table width="100%" style="word-wrap: break-word;word-break: break-all;">    
+            <table width="100%" style="word-wrap: break-word;word-break: break-all;">
             <?php
 
             // Get projects JSON data

@@ -2,27 +2,27 @@
 
     /*
     *  Copyright (c) Codiad & daeks (codiad.com), distributed
-    *  as-is and without warranty under the MIT License. See 
+    *  as-is and without warranty under the MIT License. See
     *  [root]/license.txt for more. This information must remain intact.
     */
 
 
-    require_once('../../common.php');
-    
+    require_once( BASE_PATH . '/common.php' );
+
     //////////////////////////////////////////////////////////////////
     // Verify Session or Key
     //////////////////////////////////////////////////////////////////
-    
+
     checkSession();
 
     switch($_GET['action']){
-    
+
         //////////////////////////////////////////////////////////////
         // Marketplace
         //////////////////////////////////////////////////////////////
-        
+
         case 'list':
-            if(!checkAccess()){ 
+            if(!checkAccess()){
             ?>
             <label><?php i18n("Restricted"); ?></label>
             <pre><?php i18n("You can not access the marketplace"); ?></pre>
@@ -60,14 +60,14 @@
                     }
                     if(!array_key_exists($data['category'], $marketplace[$data['remote']][$data['type']])) {
                         $marketplace[$data['remote']][$data['type']][$data['category']] = array();
-                    } 
+                    }
                     array_push($marketplace[$data['remote']][$data['type']][$data['category']], $data);
                 }
                 ksort($marketplace);
-                
+
                 $extLoaded = (extension_loaded('zip') && extension_loaded('openssl') && ini_get('allow_url_fopen') == 1);
                 function sort_name($a, $b) { return strnatcmp($a['name'], $b['name']); }
-                
+
                 foreach($marketplace as $remote=>$markettype) {
                     ksort($markettype);
                     echo '<tr><th class="market-remote-title">';
@@ -92,7 +92,7 @@
                                 if(isset($addon['image']) && $addon['image'] != '') {
                                   echo '<div style="position:absolute;top:5px;left:404px;"><a onclick="codiad.market.openInBrowser(\''.$addon['image'].'\');return false;"><img src="'.$addon['image'].'" width="150" height="90"></a></div>';
                                   $right = 160;
-                                } 
+                                }
                                 if(isset($addon['new'])) {
                                     echo '<div style="position:absolute;top:0px;left:0px;z-index:10000;"><img src="./themes/default/images/new.png" width="35" height="35"></div>';
                                     $left = $left + 30;
@@ -124,8 +124,8 @@
                               }
                           }
                         }
-                    } 
-                }           
+                    }
+                }
             ?>
             </table></div>
             </div>
@@ -137,17 +137,16 @@
                          ?><button style="color: blue;white-space:nowrap;" onclick="window.location.reload();return false;"><?php i18n("Reload Codiad"); ?></button><?php
                       } else {
                          ?><button class="icon-arrows-ccw bigger-icon" onclick="window.location.reload();return false;"></button><?php
-                      }                    
+                      }
                     ?></th>
                     <th valign="middle"><input style="margin:0;display:inline" id="repourl" placeholder="<?php i18n("Enter GitHub Repository Url..."); ?>"></th>
                     <th valign="middle" align="right" style="white-space:nowrap;" width="222px"><button class="btn-left" onclick="codiad.market.install('<?php echo $_GET['type']; ?>','','Manually',getElementById('repourl').value);return false;"><?php i18n("Install Manually"); ?></button><button class="btn-right" onclick="codiad.modal.unload();return false;"><?php i18n("Close"); ?></button></th>
                 </tr>
              </table>
             <?php
-            }            
+            }
             break;
-             
+
     }
-    
+
 ?>
-        

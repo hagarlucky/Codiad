@@ -2,11 +2,11 @@
 
 /*
 *  Copyright (c) Codiad & Kent Safranski (codiad.com), distributed
-*  as-is and without warranty under the MIT License. See 
+*  as-is and without warranty under the MIT License. See
 *  [root]/license.txt for more. This information must remain intact.
 */
 
-require_once('../../common.php');
+require_once( BASE_PATH . '/common.php' );
 
 //////////////////////////////////////////////////////////////////
 // Verify Session or Key
@@ -27,7 +27,7 @@ switch($_GET['action']){
     $path = $_GET['path'];
     ?>
     <label><?php i18n("Close Unsaved File?"); ?></label>
-    
+
     <pre><?php echo($path); ?></pre>
 
     <button class="btn-left" onclick="save_and_close('<?php echo($path); ?>'); return false;"><?php i18n("Save & Close"); ?></button>
@@ -39,13 +39,13 @@ switch($_GET['action']){
     case 'confirmAll':
     ?>
     <label><?php i18n("Close Unsaved Files?"); ?></label>
-    
+
     <button class="btn-left" onclick="save_and_close_all(); return false;"><?php i18n("Save & Close"); ?></button>
     <button class="btn-mid" onclick="close_without_save_all(); return false;"><?php i18n("Discard Changes"); ?></button>
     <button class="btn-right" onclick="codiad.modal.unload(); return false;"><?php i18n("Cancel"); ?></button>
     <?php
     break;
-    
+
 }
 
 ?>
@@ -62,12 +62,12 @@ switch($_GET['action']){
             }
         });*/
         codiad.active.save(path);
-        codiad.active.close(path);        
+        codiad.active.close(path);
         codiad.modal.unload();
     }
 
     function close_without_save(path){
-        codiad.active.close(path);        
+        codiad.active.close(path);
         codiad.modal.unload();
     }
 

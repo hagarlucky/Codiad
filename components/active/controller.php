@@ -6,7 +6,7 @@
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
+    require_once( BASE_PATH . '/common.php' );
     require_once('class.active.php');
 
     $Active = new Active();
@@ -66,7 +66,7 @@ if ($_GET['action']=='remove') {
     $Active->path = $_GET['path'];
     $Active->Remove();
 }
-    
+
     //////////////////////////////////////////////////////////////////
     // Remove all active record
     //////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ if ($_GET['action']=='removeall') {
     $Active->username = $_SESSION['user'];
     $Active->RemoveAll();
 }
-    
+
     //////////////////////////////////////////////////////////////////
     // Mark file as focused
     //////////////////////////////////////////////////////////////////

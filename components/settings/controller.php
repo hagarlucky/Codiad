@@ -6,13 +6,13 @@
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
+    require_once( BASE_PATH . '/common.php' );
     require_once('class.settings.php');
 
 if (!isset($_GET['action'])) {
     die(formatJSEND("error", "Missing parameter"));
 }
-    
+
     //////////////////////////////////////////////////////////////////
     // Verify Session or Key
     //////////////////////////////////////////////////////////////////

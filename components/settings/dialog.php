@@ -6,7 +6,7 @@
     *  [root]/license.txt for more. This information must remain intact.
     */
 
-    require_once('../../common.php');
+    require_once( BASE_PATH . '/common.php' );
 
     //////////////////////////////////////////////////////////////////
     // Verify Session or Key
@@ -47,7 +47,7 @@
                     <div class="panels-plugins">
                         <?php
                             $plugins = Common::readDirectory(PLUGINS);
-                            
+
                             foreach($plugins as $plugin){
                                 if(file_exists(PLUGINS . "/" . $plugin . "/plugin.json")){
                                     $datas = json_decode(file_get_contents(PLUGINS . "/" . $plugin . "/plugin.json"), true);
@@ -78,7 +78,7 @@
                 $('.settings-view .config-menu li').click(function(){
                     codiad.settings._showTab($(this).attr('data-file'));
                 });
-            
+
                 function save() {
                     $('.setting').each(function(){
                         var setting = $(this).data('setting');
@@ -123,11 +123,11 @@
                                 case 'codiad.editor.fileManagerTrigger':
                                     var bool_val = (val == "true");
                                     codiad.editor.setFileManagerTrigger(bool_val);
-                                    break;    
+                                    break;
                                 case 'codiad.editor.persistentModal':
                                     var bool_val = (val == "true");
                                     codiad.editor.setPersistentModal(bool_val);
-                                    break;      
+                                    break;
                                 case "codiad.editor.softTabs":
                                     var bool_val = (val == "true");
                                     codiad.editor.setSoftTabs(bool_val);
