@@ -6,7 +6,11 @@
 *  [root]/license.txt for more. This information must remain intact.
 */
 
+<<<<<<< HEAD
 require_once( BASE_PATH . '/common.php' );
+=======
+require_once('../../common.php');
+>>>>>>> parent of ca6cbf3... Merge remote-tracking branch 'origin/master' into diro
 
 class Project extends Common
 {
